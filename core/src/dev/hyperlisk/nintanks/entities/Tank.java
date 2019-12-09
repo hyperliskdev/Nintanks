@@ -79,12 +79,6 @@ public class Tank {
 
 
     public void update(float dt) {
-        TankAI ai = new TankAI(this, );
-
-        ai.move();
-        ai.rotate();
-
-        ai.
 
     }
 
@@ -95,7 +89,6 @@ public class Tank {
             case BROWN:
 
             case GREY:
-                texture;
 
             case TEAL:
 
@@ -223,9 +216,6 @@ public class Tank {
         return bulletSpeed;
     }
 
-    public BulletType getBulletType() {
-        return bulletType;
-    }
 
     public FireRate getFireRate() {
         return fireRate;

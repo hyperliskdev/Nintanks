@@ -6,6 +6,11 @@ import com.badlogic.gdx.Input.*;
 import dev.hyperlisk.nintanks.Reference.*;
 public class InputHandler {
 
+    public InputHandler() {
+
+
+    }
+
     public void update(float dt) {
 
         if(Gdx.input.isKeyPressed(Keys.W) || Gdx.input.isKeyPressed(Keys.UP)) {
@@ -24,6 +29,11 @@ public class InputHandler {
 
         }
 
+        if(Gdx.input.isKeyPressed(Keys.D) || Gdx.input.isKeyPressed(Keys.RIGHT)) {
+
+            Directions.RIGHT_DIR = true;
+
+        }
     }
 
 }

@@ -20,16 +20,15 @@ public class Nintanks extends ApplicationAdapter {
 	Texture img;
 	Player player;
 
+	InputHandler input;
 	
 	@Override
 	public void create () {
-		cam = stateManager.currentState().getCam();
 
-		cam.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
 		sb = new SpriteBatch();
-		sb.setProjectionMatrix(cam.combined);
 
 		player = new Player();
+		input = new InputHandler();
 
 	}
 
@@ -37,8 +36,10 @@ public class Nintanks extends ApplicationAdapter {
 	public void render () {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
 		float dt = Gdx.graphics.getDeltaTime();
+		input.update(dt);
+
+
 		player.update(dt);
 
 		sb.begin();
