@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import dev.hyperlisk.nintanks.entities.Player;
+import dev.hyperlisk.nintanks.states.StateManager;
 
 import static dev.hyperlisk.nintanks.Reference.VIEWPORT_HEIGHT;
 import static dev.hyperlisk.nintanks.Reference.VIEWPORT_WIDTH;
@@ -14,6 +15,7 @@ import static dev.hyperlisk.nintanks.Reference.VIEWPORT_WIDTH;
 public class Nintanks extends ApplicationAdapter {
 
 	SpriteBatch sb;
+	StateManager stateManager;
 	OrthographicCamera cam;
 	Texture img;
 	Player player;
@@ -21,15 +23,13 @@ public class Nintanks extends ApplicationAdapter {
 	
 	@Override
 	public void create () {
+		cam = stateManager.currentState().getCam();
 
-
-		cam = new OrthographicCamera();
 		cam.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
 		sb = new SpriteBatch();
 		sb.setProjectionMatrix(cam.combined);
 
 		player = new Player();
-
 
 	}
 

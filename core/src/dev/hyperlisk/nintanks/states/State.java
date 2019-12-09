@@ -27,4 +27,20 @@ public abstract class State {
     public abstract void update(float dt);
     public abstract void render(SpriteBatch b);
     public abstract void dispose();
+
+    public OrthographicCamera getCam() {
+        return cam;
+    }
+
+    public Vector3 getMouse() {
+        return mouse;
+    }
+
+    public StateManager getStateManager() {
+        return stateManager;
+    }
+
+    public Input.Keys getKeys() {
+        return keys;
+    }
 }
