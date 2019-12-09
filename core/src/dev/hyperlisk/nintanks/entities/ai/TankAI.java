@@ -13,10 +13,6 @@ public class TankAI {
 
     }
 
-    public void rotate() {
-
-
-    }
 
     public void rotate() {
 
