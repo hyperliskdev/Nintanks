@@ -1,5 +1,6 @@
 package dev.hyperlisk.nintanks.states;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
@@ -13,6 +14,7 @@ public abstract class State {
     protected OrthographicCamera cam;
     protected Vector3 mouse;
     protected StateManager stateManager;
+    protected Input.Keys keys;
 
     protected State(StateManager stateManager){
         this.stateManager = stateManager;
@@ -20,9 +22,6 @@ public abstract class State {
         mouse = new Vector3();
     }
 
-    protected void rotate(int d){
-        this.cam.rotate(d);
-    }
 
     protected abstract void handleInput();
     public abstract void update(float dt);
