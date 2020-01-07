@@ -1,0 +1,1 @@
+Each image is 1 frame of a 10-frame animation.

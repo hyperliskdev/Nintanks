@@ -21,7 +21,8 @@ public class Nintanks extends ApplicationAdapter {
 	Player player;
 
 	InputHandler input;
-	
+
+
 	@Override
 	public void create () {
 
@@ -29,6 +30,8 @@ public class Nintanks extends ApplicationAdapter {
 
 		player = new Player();
 		input = new InputHandler();
+		Gdx.input.setInputProcessor(input);
+
 
 	}
 
@@ -37,15 +40,10 @@ public class Nintanks extends ApplicationAdapter {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		float dt = Gdx.graphics.getDeltaTime();
-		input.update(dt);
-
 
 		player.update(dt);
 
-		sb.begin();
 		player.render(sb);
-
-		sb.end();
 
 
 
