@@ -14,6 +14,9 @@ public class Reference {
         public static boolean LEFT_DIR;
         public static boolean RIGHT_DIR;
 
+        public static boolean FORWARD_DIR;
+        public static boolean BACKWARD_DIR;
+
     }
 
     public static class Mouse {
