@@ -35,13 +35,14 @@ public class Player {
         sprite.scale(1);
         sprite.setOrigin(sprite.getOriginX() + 1.5f, sprite.getOriginY());
         mouseSprite.scale(0.5f);
+        mouseSprite.setOrigin(mouseSprite.getWidth() / 2, mouseSprite.getHeight() / 2);
 
     }
 
 
     public void update(float dt) {
 
-        mouseSprite.setPosition(Gdx.input.getX() - 6, -Gdx.input.getY() + Gdx.graphics.getHeight() - 10);
+        mouseSprite.setPosition(Mouse.mousePosition.x - mouseSprite.getOriginX(), Gdx.graphics.getHeight() - Mouse.mousePosition.y - mouseSprite.getOriginY());
 
         deltaX = (float) Math.cos(Math.toRadians(angle + 180));
         deltaY = (float) Math.sin(Math.toRadians(angle + 180));
@@ -60,6 +61,10 @@ public class Player {
             xpos += deltaX * speed;
             ypos += deltaY * speed;
 
+        }
+
+        if(Mouse.mouseLeft) {
+            shoot();
         }
 
         sprite.setX(xpos);
