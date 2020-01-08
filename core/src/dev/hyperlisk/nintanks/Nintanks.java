@@ -25,7 +25,6 @@ public class Nintanks extends ApplicationAdapter {
 	@Override
 	public void create () {
 
-		//
 		sb = new SpriteBatch();
 		mapHandler = new MapHandler();
 		player = new Player();

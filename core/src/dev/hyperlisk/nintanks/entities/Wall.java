@@ -5,8 +5,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
-
-
 import static dev.hyperlisk.nintanks.util.Reference.*;
 
 public class Wall {
