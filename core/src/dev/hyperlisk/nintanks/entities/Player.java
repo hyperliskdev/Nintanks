@@ -99,6 +99,12 @@ public class Player {
 
     public void collide(Rectangle wallRect, float radius) {
 
+        if(collider.overlaps(wallRect)) {
+            speed = 0.2f;
+        } else {
+            speed = 1.2f;
+        }
+
     }
 
 }

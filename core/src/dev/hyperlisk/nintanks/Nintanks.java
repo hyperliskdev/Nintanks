@@ -16,15 +16,17 @@ import java.io.IOException;
 
 public class Nintanks extends ApplicationAdapter {
 
-	SpriteBatch sb;
-	Player player;
-	InputHandler input;
-	MapHandler mapHandler;
+	// Object Stubs
+	private SpriteBatch sb;
+	private Player player;
+	private InputHandler input;
+	private MapHandler mapHandler;
 
 
 	@Override
 	public void create () {
 
+		// Create objects
 		sb = new SpriteBatch();
 		mapHandler = new MapHandler();
 		player = new Player();
@@ -45,6 +47,7 @@ public class Nintanks extends ApplicationAdapter {
 		for (Wall w: mapHandler.getWalls()) {
 			w.update(dt);
 			w.render(sb);
+			player.collide(w.getWallRect(), 2.0f);
 		}
 
 		player.update(dt);
