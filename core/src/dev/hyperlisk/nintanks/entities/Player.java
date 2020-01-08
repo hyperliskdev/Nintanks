@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Rectangle;
 import dev.hyperlisk.nintanks.util.Reference.*;
 
 public class Player {
@@ -15,6 +16,8 @@ public class Player {
     private float deltaX, deltaY;
     private float speed = 1.2f;
 
+    private Rectangle collider;
+
     private float angle;
     private final float ACCELERATION = 0.2f, MAX_SPEED = 2;
 
@@ -22,13 +25,23 @@ public class Player {
     private Sprite mouseSprite;
 
     public Player() {
+
+        // Initialize Sprites
         sprite = new Sprite(new Texture("player/player_tank_blue.png"));
         mouseSprite = new Sprite(new Texture("item/crosshair.png"));
+
+        // Scale Sprites
         sprite.scale(1);
-        sprite.setOrigin(sprite.getOriginX() + 1.5f, sprite.getOriginY());
         mouseSprite.scale(0.5f);
+
+        // Set origins to accurate positioning
+        sprite.setOrigin(sprite.getOriginX() + 1.5f, sprite.getOriginY());
         mouseSprite.setOrigin(mouseSprite.getWidth() / 2, mouseSprite.getHeight() / 2);
 
+        // Bounding box initialization
+        collider = sprite.getBoundingRectangle();
+
+        sprite.setPosition(200, 200);
     }
 
 
@@ -57,11 +70,11 @@ public class Player {
 
         sprite.setX(xpos);
         sprite.setY(ypos);
+        collider.setPosition(xpos, ypos);
     }
 
     public void render(SpriteBatch sb) {
         sb.begin();
-
 
         sprite.setRotation(angle + 180);
 
@@ -82,6 +95,9 @@ public class Player {
         if(angle < 0){
             angle += 360;
         }
+    }
+
+    public void collide(Rectangle wallRect, float radius) {
 
     }
 

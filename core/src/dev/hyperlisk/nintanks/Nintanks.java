@@ -25,11 +25,13 @@ public class Nintanks extends ApplicationAdapter {
 	@Override
 	public void create () {
 
+		//
 		sb = new SpriteBatch();
 		mapHandler = new MapHandler();
-
 		player = new Player();
 		input = new InputHandler();
+
+
 		Gdx.input.setInputProcessor(input);
 
 
@@ -44,12 +46,13 @@ public class Nintanks extends ApplicationAdapter {
 		for (Wall w: mapHandler.getWalls()) {
 			w.update(dt);
 			w.render(sb);
-
 		}
 
 		player.update(dt);
 
 		player.render(sb);
+
+
 
 
 

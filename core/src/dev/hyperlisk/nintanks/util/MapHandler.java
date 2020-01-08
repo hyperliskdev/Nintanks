@@ -22,29 +22,28 @@ public class MapHandler {
             e.printStackTrace();
         }
 
-        for (int x = 0; x < 16; x++) {
+        for (int x = 0; x < 32; x++) {
             try {
                 line = reader.readLine();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            for (int y = 0; y < 16; y++) {
+            for (int y = 0; y < 32; y++) {
 
                 if(line == null) {
                     break;
                 }
 
-                if(line.charAt(x) == 'w') {
+                if(line.charAt(y) == 'w') {
                     walls.add(new Wall(x, y, false));
                 }
 
-                if(line.charAt(x) == 'b') {
+                if(line.charAt(y) == 'b') {
                     walls.add(new Wall(x, y, true));
                 }
 
-                if(line.charAt(x) == 'n') {
-                    continue;
-                }
+
+
             }
             if(line == null) {
                 break;
