@@ -1,0 +1,2 @@
+The ground will tile better when using
+a mixture of both textures provided

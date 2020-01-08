@@ -45,3 +45,7 @@ Different levels of "Intellect" for both offensive and defensive will be needed.
 - MULTIPLAYER! 100% REQUIRED!
 - Powerups or leveling system
 - Cosmetics??
+
+
+# Level system
+Each level will be read from the game state and place sprites into it the map.

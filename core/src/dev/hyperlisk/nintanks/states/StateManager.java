@@ -13,6 +13,12 @@ public class StateManager {
 
     }
 
+    public State currentState() {
+
+        return states.get(0);
+
+    }
+
     // Puts the state inside the stack
     public void push(State state) {
 
