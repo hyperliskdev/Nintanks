@@ -18,31 +18,35 @@ import static dev.hyperlisk.nintanks.Reference.VIEWPORT_WIDTH;
 public class Player {
 
     private float xpos, ypos;
+    private float velx, vely;
 
     private float deltaX, deltaY;
-    private float speed = 1.5f;
+    private float speed = 1.2f;
 
     private float angle;
-    private final float FRICTION = 0.5f, ACCELERATION = 0.5f;
+    private final float ACCELERATION = 0.2f, MAX_SPEED = 2;
 
     private Sprite sprite;
+    private Sprite mouseSprite;
 
     public Player() {
         sprite = new Sprite(new Texture("player/player_tank_blue.png"));
+        mouseSprite = new Sprite(new Texture("item/crosshair.png"));
         sprite.scale(1);
         sprite.setOrigin(sprite.getOriginX() + 1.5f, sprite.getOriginY());
+        mouseSprite.scale(0.5f);
 
     }
 
 
     public void update(float dt) {
 
+        mouseSprite.setPosition(Gdx.input.getX() - 6, -Gdx.input.getY() + Gdx.graphics.getHeight() - 10);
+
         deltaX = (float) Math.cos(Math.toRadians(angle + 180));
         deltaY = (float) Math.sin(Math.toRadians(angle + 180));
 
         rotateSprite();
-
-        // Forward and Backwards based on facing direction.
 
         if(Directions.UP_DIR) {
 
@@ -53,8 +57,8 @@ public class Player {
 
         if(Directions.DOWN_DIR) {
 
-            xpos += (float) Math.cos(Math.toRadians(angle + 180));
-            ypos += (float) Math.sin(Math.toRadians(angle + 180));
+            xpos += deltaX * speed;
+            ypos += deltaY * speed;
 
         }
 
@@ -69,6 +73,7 @@ public class Player {
         sprite.setRotation(angle + 180);
 
 
+        mouseSprite.draw(sb);
         sprite.draw(sb);
         sb.end();
     }
@@ -85,6 +90,6 @@ public class Player {
             angle += 360;
         }
 
-
     }
+
 }
