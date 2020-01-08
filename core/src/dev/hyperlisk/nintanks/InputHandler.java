@@ -1,12 +1,10 @@
 package dev.hyperlisk.nintanks;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.*;
 
 import com.badlogic.gdx.InputProcessor;
 import dev.hyperlisk.nintanks.Reference.*;
 
-import java.sql.Ref;
 
 public class InputHandler implements InputProcessor {
 
@@ -16,25 +14,25 @@ public class InputHandler implements InputProcessor {
     public boolean keyDown(int keycode) {
 
         boolean keyProcessed = false;
-        switch (keycode) // switch code base on the variable keycode
+        switch (keycode)
         {
-            case Keys.LEFT:     // if keycode is the same as Keys.LEFT a.k.a 21
-                Directions.LEFT_DIR = true;    // do this
-                keyProcessed = true;    // we have reacted to a keypress
+            case Keys.LEFT: case Keys.A:
+                Directions.LEFT_DIR = true;
+                keyProcessed = true;
                 break;
-            case Keys.RIGHT:    // if keycode is the same as Keys.LEFT a.k.a 22
-                Directions.RIGHT_DIR = true;   // do this
-                keyProcessed = true;    // we have reacted to a keypress
+            case Keys.RIGHT: case Keys.D:
+                Directions.RIGHT_DIR = true;
+                keyProcessed = true;
                 break;
-            case Keys.UP:       // if keycode is the same as Keys.LEFT a.k.a 19
-                Directions.UP_DIR = true;      // do this
-                keyProcessed = true;    // we have reacted to a keypress
+            case Keys.UP: case Keys.W:
+                Directions.UP_DIR = true;
+                keyProcessed = true;
                 break;
-            case Keys.DOWN:     // if keycode is the same as Keys.LEFT a.k.a 20
-                Directions.DOWN_DIR = true;    // do this
-                keyProcessed = true;    // we have reacted to a keypress
+            case Keys.DOWN: case Keys.S:
+                Directions.DOWN_DIR = true;
+                keyProcessed = true;
         }
-        return keyProcessed;    //  return our peyProcessed flag
+        return keyProcessed;
     }
 
     @Override

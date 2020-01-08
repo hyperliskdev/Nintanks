@@ -17,11 +17,10 @@ import static dev.hyperlisk.nintanks.Reference.VIEWPORT_WIDTH;
 
 public class Player {
 
-    private float xvel, yvel;
     private float xpos, ypos;
-    private float time;
 
-    private float speed = 15;
+    private float deltaX, deltaY;
+    private float speed = 1.5f;
 
     private float angle;
     private final float FRICTION = 0.5f, ACCELERATION = 0.5f;
@@ -37,8 +36,9 @@ public class Player {
 
 
     public void update(float dt) {
-        time += dt;
 
+        deltaX = (float) Math.cos(Math.toRadians(angle + 180));
+        deltaY = (float) Math.sin(Math.toRadians(angle + 180));
 
         rotateSprite();
 
@@ -46,16 +46,15 @@ public class Player {
 
         if(Directions.UP_DIR) {
 
-            xpos += (float) Math.sin(Math.toRadians(angle) * speed);
-            ypos += (float) -Math.cos(Math.toRadians(angle) * speed);
+            xpos -= deltaX * speed;
+            ypos -= deltaY * speed;
 
         }
 
         if(Directions.DOWN_DIR) {
 
-            xpos -= (float) Math.sin(Math.toRadians(angle) * speed);
-            ypos -= (float) Math.cos(Math.toRadians(angle) * speed);
-
+            xpos += (float) Math.cos(Math.toRadians(angle + 180));
+            ypos += (float) Math.sin(Math.toRadians(angle + 180));
 
         }
 
