@@ -5,15 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.viewport.Viewport;
-import dev.hyperlisk.nintanks.Reference.*;
-
-import java.sql.Ref;
-
-import static dev.hyperlisk.nintanks.Reference.VIEWPORT_HEIGHT;
-import static dev.hyperlisk.nintanks.Reference.VIEWPORT_WIDTH;
+import dev.hyperlisk.nintanks.util.Reference.*;
 
 public class Player {
 
@@ -61,10 +53,6 @@ public class Player {
             xpos += deltaX * speed;
             ypos += deltaY * speed;
 
-        }
-
-        if(Mouse.mouseLeft) {
-            shoot();
         }
 
         sprite.setX(xpos);
