@@ -10,6 +10,6 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.width = Reference.VIEWPORT_WIDTH;
 		config.height = Reference.VIEWPORT_HEIGHT;
-		new LwjglApplication(new Nintanks(), config);
+		new LwjglApplication(Nintanks.getInstance(), config);
 	}
 }

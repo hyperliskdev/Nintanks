@@ -13,15 +13,27 @@ import dev.hyperlisk.nintanks.util.InputHandler;
 import dev.hyperlisk.nintanks.util.MapHandler;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Nintanks extends ApplicationAdapter {
+
+	private static Nintanks instance = null;
 
 	// Object Stubs
 	private SpriteBatch sb;
 	private Player player;
 	private InputHandler input;
-	private MapHandler mapHandler;
+	public MapHandler mapHandler;
 
+	private Nintanks() {}
+
+	public static Nintanks getInstance() {
+		if(instance == null) {
+			instance = new Nintanks();
+		}
+		return instance;
+
+	}
 
 	@Override
 	public void create () {
@@ -47,21 +59,31 @@ public class Nintanks extends ApplicationAdapter {
 		for (Wall w: mapHandler.getWalls()) {
 			w.update(dt);
 			w.render(sb);
-			player.collide(w.getWallRect(), 2.0f);
 		}
 
 		player.update(dt);
 
 		player.render(sb);
 
-
-
-
-
 	}
 	
 	@Override
 	public void dispose () {
 
+	}
+
+	@Override
+	public void pause() {
+		super.pause();
+	}
+
+	@Override
+	public void resume() {
+		super.resume();
+	}
+
+	@Override
+	public void resize(int width, int height) {
+		super.resize(width, height);
 	}
 }
