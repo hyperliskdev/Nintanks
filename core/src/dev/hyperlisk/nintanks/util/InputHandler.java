@@ -1,9 +1,9 @@
-package dev.hyperlisk.nintanks;
+package dev.hyperlisk.nintanks.util;
 
 import com.badlogic.gdx.Input.*;
 
 import com.badlogic.gdx.InputProcessor;
-import dev.hyperlisk.nintanks.Reference.*;
+import dev.hyperlisk.nintanks.util.Reference.*;
 
 
 public class InputHandler implements InputProcessor {

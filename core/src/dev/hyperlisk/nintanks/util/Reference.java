@@ -1,11 +1,11 @@
-package dev.hyperlisk.nintanks;
+package dev.hyperlisk.nintanks.util;
 
 import com.badlogic.gdx.math.Vector2;
 
 public class Reference {
 
     public static final int VIEWPORT_WIDTH = 800;
-    public static final int VIEWPORT_HEIGHT = 600;
+    public static final int VIEWPORT_HEIGHT = 800;
 
     public static class Directions {
 
@@ -16,6 +16,8 @@ public class Reference {
 
         public static boolean FORWARD_DIR;
         public static boolean BACKWARD_DIR;
+
+        public static boolean SHIFT;
 
     }
 
