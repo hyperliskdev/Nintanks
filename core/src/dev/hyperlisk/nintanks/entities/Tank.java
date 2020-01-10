@@ -70,8 +70,6 @@ public class Tank {
                 bulletSpeed = BulletSpeed.FAST;
                 fireRate = FireRate.FAST;
 
-
-
         }
 
 
@@ -215,7 +213,6 @@ public class Tank {
     public BulletSpeed getBulletSpeed() {
         return bulletSpeed;
     }
-
 
     public FireRate getFireRate() {
         return fireRate;

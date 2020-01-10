@@ -11,7 +11,6 @@ import dev.hyperlisk.nintanks.Nintanks;
 import dev.hyperlisk.nintanks.util.Reference.*;
 
 import java.awt.*;
-import java.awt.geom.Arc2D;
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -22,7 +21,6 @@ public class Player {
 
     private Vector2 playerPos = new Vector2(0, 0);
     private Vector2 direction = new Vector2(0, 0);
-    private Vector2 acceleration = new Vector2(0, 0);
 
     private float playerScale = 1.0f;
     private float angle;
@@ -67,27 +65,33 @@ public class Player {
         direction.x = (float) Math.cos(Math.toRadians(angle + 180));
         direction.y = (float) Math.sin(Math.toRadians(angle + 180));
 
+        collide();
+
 
         if(Directions.UP_DIR) {
 
 
-            playerPos.x -= direction.x;
-            playerPos.y -= direction.y;
-
+            if(Directions.SHIFT) {
+                playerPos.x -= direction.x * 2;
+                playerPos.y -= direction.y * 2;
+            } else {
+                playerPos.x -= direction.x;
+                playerPos.y -= direction.y;
+            }
         }
 
         if(Directions.DOWN_DIR) {
 
+            playerPos.x += direction.x;
+            playerPos.y += direction.y;
+
         }
 
         if(!Directions.FORWARD_DIR && !Directions.BACKWARD_DIR) {
-            acceleration.x = 0.0f;
-            acceleration.y = 0.0f;
             
 
         }
 
-        collide();
 
 
         collider.setPosition(playerPos.x, playerPos.y);
@@ -117,6 +121,7 @@ public class Player {
         float xInput = Mouse.mousePosition.x;
         float yInput = (Gdx.graphics.getHeight() - Mouse.mousePosition.y);
 
+        // Get the angle based on the mouse position.
         this.angle = MathUtils.radiansToDegrees * MathUtils.atan2(yInput - playerPos.y, xInput - playerPos.x);
 
         if(angle < 0){
@@ -131,6 +136,7 @@ public class Player {
      */
     public int getDistanceFromWall(Wall w) {
 
+        // Distance from a single wall.
         return (int)Math.abs(new Point((int)playerPos.x, (int)playerPos.y).distance(w.getAsPoint()));
 
     }
@@ -176,14 +182,8 @@ public class Player {
         } else {
             walls = getNearbyWalls(radius);
         }
-        for (Wall wall : walls) {
 
-            if (wall.getWallRect().overlaps(collider)) {
-
-            } else {
-                return;
-            }
-        }
+        return;
     }
 
 }

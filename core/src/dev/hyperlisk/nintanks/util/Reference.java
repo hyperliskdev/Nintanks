@@ -7,9 +7,6 @@ public class Reference {
     public static final int VIEWPORT_WIDTH = 800;
     public static final int VIEWPORT_HEIGHT = 800;
 
-    public static final int TILESIZEX = VIEWPORT_WIDTH / 16;
-    public static final int TILESIZEY = VIEWPORT_HEIGHT / 16;
-
     public static class Directions {
 
         public static boolean UP_DIR;
@@ -19,6 +16,8 @@ public class Reference {
 
         public static boolean FORWARD_DIR;
         public static boolean BACKWARD_DIR;
+
+        public static boolean SHIFT;
 
     }
 
