@@ -19,8 +19,9 @@ public class Player {
     // Player values
     private Sprite playerSprite;
 
-    private Vector2 playerPos = new Vector2(0, 0);
+    private Vector2 playerPos = new Vector2(200, 100);
     private Vector2 direction = new Vector2(0, 0);
+    private Vector2 velocity = new Vector2(1, 1);
 
     private float playerScale = 1.0f;
     private float angle;
@@ -62,37 +63,22 @@ public class Player {
 
         rotateSprite();
 
-        direction.x = (float) Math.cos(Math.toRadians(angle + 180));
-        direction.y = (float) Math.sin(Math.toRadians(angle + 180));
+        setDirection(new Vector2((float) Math.cos(Math.toRadians(angle + 180)), (float) Math.sin(Math.toRadians(angle + 180))));
 
         collide();
 
-
         if(Directions.UP_DIR) {
 
-
-            if(Directions.SHIFT) {
-                playerPos.x -= direction.x * 2;
-                playerPos.y -= direction.y * 2;
-            } else {
-                playerPos.x -= direction.x;
-                playerPos.y -= direction.y;
-            }
+            playerPos.x -= getDirection().x * getVelocity().x;
+            playerPos.y -= getDirection().y * getVelocity().y;
         }
 
         if(Directions.DOWN_DIR) {
 
-            playerPos.x += direction.x;
-            playerPos.y += direction.y;
+            playerPos.x += getDirection().x;
+            playerPos.y += getDirection().y;
 
         }
-
-        if(!Directions.FORWARD_DIR && !Directions.BACKWARD_DIR) {
-            
-
-        }
-
-
 
         collider.setPosition(playerPos.x, playerPos.y);
         playerSprite.setPosition(collider.x, collider.y);
@@ -183,7 +169,74 @@ public class Player {
             walls = getNearbyWalls(radius);
         }
 
-        return;
+
+        for (int i = 0; i < walls.length; i++) {
+
+            if(walls[i].getWallRect().overlaps(collider)) {
+
+                
+
+            }
+
+
+
+            }
+        }
+
+
+    public Vector2 getPlayerPos() {
+        return playerPos;
     }
 
+    public void setPlayerPos(Vector2 playerPos) {
+        this.playerPos = playerPos;
+    }
+
+    public void setPlayerX(float x) {
+        this.playerPos.x = x;
+    }
+
+    public void setPlayerY(float y) {
+        this.playerPos.y = y;
+    }
+
+    public Vector2 getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Vector2 direction) {
+        this.direction = direction;
+    }
+
+    public float getPlayerScale() {
+        return playerScale;
+    }
+
+    public void setPlayerScale(float playerScale) {
+        this.playerScale = playerScale;
+    }
+
+    public float getAngle() {
+        return angle;
+    }
+
+    public void setAngle(float angle) {
+        this.angle = angle;
+    }
+
+    public Rectangle getCollider() {
+        return collider;
+    }
+
+    public void setCollider(Rectangle collider) {
+        this.collider = collider;
+    }
+
+    public Vector2 getVelocity() {
+        return velocity;
+    }
+
+    public void setVelocity(Vector2 velocity) {
+        this.velocity = velocity;
+    }
 }
