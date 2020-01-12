@@ -69,8 +69,8 @@ public class Player {
 
         if(Directions.UP_DIR) {
 
-            playerPos.x -= getDirection().x * getVelocity().x;
-            playerPos.y -= getDirection().y * getVelocity().y;
+            playerPos.x -= getDirection().x;
+            playerPos.y -= getDirection().y;
         }
 
         if(Directions.DOWN_DIR) {
@@ -166,22 +166,18 @@ public class Player {
         if(getNearbyWalls(radius) == null || getNearbyWalls(radius).length <= 1) {
             return;
         } else {
+            Wall currentWall;
             walls = getNearbyWalls(radius);
-        }
+            for (int i = 0; i < walls.length; i++) {
 
+                currentWall = walls[i];
+                if(currentWall.getWallRect().overlaps(collider)) {
 
-        for (int i = 0; i < walls.length; i++) {
-
-            if(walls[i].getWallRect().overlaps(collider)) {
-
-                
-
-            }
-
-
-
+                }
+                return;
             }
         }
+    }
 
 
     public Vector2 getPlayerPos() {
