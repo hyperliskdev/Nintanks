@@ -4,8 +4,8 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Reference {
 
-    public static final int VIEWPORT_WIDTH = 800;
-    public static final int VIEWPORT_HEIGHT = 800;
+    public static final int VIEWPORT_WIDTH = 768;
+    public static final int VIEWPORT_HEIGHT = 768;
 
     public static class Directions {
 

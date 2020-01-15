@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import dev.hyperlisk.nintanks.Nintanks;
+import dev.hyperlisk.nintanks.helpers.MathHelper;
 import dev.hyperlisk.nintanks.util.Reference.*;
 
 import java.awt.*;
@@ -67,6 +68,13 @@ public class Player {
 
         collide();
 
+        move();
+
+
+    }
+
+    public void move() {
+
         if(Directions.UP_DIR) {
 
             playerPos.x -= getDirection().x;
@@ -80,9 +88,9 @@ public class Player {
 
         }
 
+        playerSprite.setPosition(playerPos.x, playerPos.y);
+        System.out.println(direction.x + "," + direction.y);
         collider.setPosition(playerPos.x, playerPos.y);
-        playerSprite.setPosition(collider.x, collider.y);
-
     }
 
     /**
@@ -116,6 +124,42 @@ public class Player {
     }
 
     /**
+     *
+     */
+    public void collide() {
+        double radius = 100;
+        Wall[] walls;
+
+        if(getNearbyWalls(radius) == null || getNearbyWalls(radius).length <= 1) {
+            return;
+        } else {
+            Wall currentWall;
+            walls = getNearbyWalls(radius);
+            for (int i = 0; i < walls.length; i++) {
+
+                currentWall = walls[i];
+                if(currentWall.getWallRect().overlaps(collider)) {
+
+                    if(direction.x > 0 && direction.y > 0) {
+                        setDirection(new Vector2(0, getDirection().y));
+                    }
+                    if(direction.x < 0 && direction.y > 0) {
+                        setDirection(new Vector2(0, getDirection().y));
+                    }
+                    if(direction.x < 0 && direction.y < 0) {
+                        setDirection(new Vector2(0, getDirection().y));
+                    }
+                    if(direction.x > 0 && direction.y < 0) {
+                        setDirection(new Vector2(0, getDirection().y));
+                    }
+                }
+                return;
+            }
+        }
+
+    }
+
+    /**
      * Takes in a single wall and returns its distance as an int.
      * @param w
      * @return distance from player
@@ -130,7 +174,7 @@ public class Player {
     /**
      *
      * @param radius
-     * @return
+     * @return an array of walls that are close to the player.
      */
     public Wall[] getNearbyWalls(double radius) {
 
@@ -156,28 +200,7 @@ public class Player {
 
     }
 
-    /**
-     *
-     */
-    public void collide() {
-        double radius = 100;
-        Wall[] walls;
 
-        if(getNearbyWalls(radius) == null || getNearbyWalls(radius).length <= 1) {
-            return;
-        } else {
-            Wall currentWall;
-            walls = getNearbyWalls(radius);
-            for (int i = 0; i < walls.length; i++) {
-
-                currentWall = walls[i];
-                if(currentWall.getWallRect().overlaps(collider)) {
-
-                }
-                return;
-            }
-        }
-    }
 
 
     public Vector2 getPlayerPos() {

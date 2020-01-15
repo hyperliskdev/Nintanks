@@ -15,7 +15,7 @@ public class MapHandler {
 
 
     public MapHandler() {
-        mapfile = new File("test.map");
+        mapfile = new File("map.txt");
         try {
             reader = new BufferedReader(new FileReader(mapfile));
         } catch (FileNotFoundException e) {
@@ -48,7 +48,6 @@ public class MapHandler {
             if(line == null) {
                 break;
         }
-
     }
     }
 

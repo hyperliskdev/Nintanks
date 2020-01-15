@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import dev.hyperlisk.nintanks.entities.Player;
 import dev.hyperlisk.nintanks.entities.Wall;
+import dev.hyperlisk.nintanks.states.State;
 import dev.hyperlisk.nintanks.states.StateManager;
 import dev.hyperlisk.nintanks.util.InputHandler;
 import dev.hyperlisk.nintanks.util.MapHandler;
@@ -24,6 +25,8 @@ public class Nintanks extends ApplicationAdapter {
 	private Player player;
 	private InputHandler input;
 	public MapHandler mapHandler;
+	private StateManager gsm;
+	private State state;
 
 	private Nintanks() {}
 
@@ -69,6 +72,7 @@ public class Nintanks extends ApplicationAdapter {
 	
 	@Override
 	public void dispose () {
+
 
 	}
 

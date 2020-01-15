@@ -41,7 +41,7 @@ public class Wall {
         wall.scale(scale);
 
         // Change the origin/ make sure it is at the center of the image.
-        wall.setOrigin(wall.getWidth() / 2 - 10, wall.getHeight() / 2 );
+        wall.setOrigin(wall.getWidth() / 2 - 10, wall.getHeight() / 2 - 10);
 
         // Set placement based on MapHandler directions.
         wall.setX((VIEWPORT_WIDTH / wall.getWidth() * wallPos.x) / 2);
