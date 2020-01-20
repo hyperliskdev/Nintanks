@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import dev.hyperlisk.nintanks.Nintanks;
 import dev.hyperlisk.nintanks.helpers.MathHelper;
+import dev.hyperlisk.nintanks.util.MapHandler;
 import dev.hyperlisk.nintanks.util.Reference.*;
 
 import java.awt.*;
@@ -52,6 +53,7 @@ public class Player {
         // Bounding box initialization
         collider = new Rectangle(0, 0, playerSprite.getWidth(), playerSprite.getHeight());
 
+
     }
 
     /**
@@ -60,6 +62,7 @@ public class Player {
      */
     public void update(float dt) {
 
+
         mouseSprite.setPosition(Mouse.mousePosition.x - mouseSprite.getOriginX(), Gdx.graphics.getHeight() - Mouse.mousePosition.y - mouseSprite.getOriginY());
 
         rotateSprite();
@@ -67,6 +70,7 @@ public class Player {
         setDirection(new Vector2((float) Math.cos(Math.toRadians(angle + 180)), (float) Math.sin(Math.toRadians(angle + 180))));
 
         collide();
+
 
         move();
 
@@ -89,7 +93,6 @@ public class Player {
         }
 
         playerSprite.setPosition(playerPos.x, playerPos.y);
-        System.out.println(direction.x + "," + direction.y);
         collider.setPosition(playerPos.x, playerPos.y);
     }
 
@@ -104,6 +107,7 @@ public class Player {
         // Draw the sprites.
         mouseSprite.draw(sb);
         playerSprite.draw(sb);
+
         sb.end();
     }
 
@@ -136,24 +140,9 @@ public class Player {
             Wall currentWall;
             walls = getNearbyWalls(radius);
             for (int i = 0; i < walls.length; i++) {
-
                 currentWall = walls[i];
-                if(currentWall.getWallRect().overlaps(collider)) {
 
-                    if(direction.x > 0 && direction.y > 0) {
-                        setDirection(new Vector2(0, getDirection().y));
-                    }
-                    if(direction.x < 0 && direction.y > 0) {
-                        setDirection(new Vector2(0, getDirection().y));
-                    }
-                    if(direction.x < 0 && direction.y < 0) {
-                        setDirection(new Vector2(0, getDirection().y));
-                    }
-                    if(direction.x > 0 && direction.y < 0) {
-                        setDirection(new Vector2(0, getDirection().y));
-                    }
-                }
-                return;
+               return;
             }
         }
 
@@ -179,7 +168,7 @@ public class Player {
     public Wall[] getNearbyWalls(double radius) {
 
         // Sort nearby walls
-        ArrayList<Wall> sorted = new ArrayList<>(Nintanks.getInstance().mapHandler.getWalls());
+        ArrayList<Wall> sorted = new ArrayList<>(MapHandler.getInstance().getWalls());
         sorted.sort(Comparator.comparing(this::getDistanceFromWall));
 
         // Get all walls within radius
@@ -199,8 +188,6 @@ public class Player {
         return sorted.subList(0, lastWallInRaduis).toArray(new Wall[lastWallInRaduis + 1]);
 
     }
-
-
 
 
     public Vector2 getPlayerPos() {

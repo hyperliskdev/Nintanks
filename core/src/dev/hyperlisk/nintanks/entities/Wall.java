@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 import static dev.hyperlisk.nintanks.util.Reference.*;
 
@@ -24,6 +25,8 @@ public class Wall {
     // Sprite and collision rectangle
     private Sprite wall;
     private Rectangle wallRect;
+    private Rectangle left, right, top, bottom;
+    private ArrayList<Rectangle> sides = new ArrayList<>();
 
     public Wall(int x, int y, boolean breakable) {
         wallPos.x = y;
@@ -57,9 +60,7 @@ public class Wall {
 
     public void render(SpriteBatch sb) {
         sb.begin();
-
         wall.draw(sb);
-
         sb.end();
     }
 
@@ -69,7 +70,7 @@ public class Wall {
 
     public Point getAsPoint() {
 
-        return new Point((int)(VIEWPORT_WIDTH / wall.getWidth() * wallPos.x) / 2, (int)(VIEWPORT_HEIGHT / wall.getHeight() * wallPos.y) / 2 );
+        return new Point((int) (VIEWPORT_WIDTH / wall.getWidth() * wallPos.x) / 2, (int) (VIEWPORT_HEIGHT / wall.getHeight() * wallPos.y) / 2);
 
     }
 

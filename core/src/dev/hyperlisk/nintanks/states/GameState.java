@@ -1,29 +1,50 @@
 package dev.hyperlisk.nintanks.states;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.Map;
+import dev.hyperlisk.nintanks.entities.Player;
+import dev.hyperlisk.nintanks.entities.Wall;
+import dev.hyperlisk.nintanks.util.InputHandler;
+import dev.hyperlisk.nintanks.util.MapHandler;
+
+import java.util.ArrayList;
 
 public class GameState extends State {
 
 
-    protected GameState(StateManager stateManager) {
+    public GameState(StateManager stateManager) {
         super(stateManager);
-
 
     }
 
+
+    Player player = new Player();
+    InputHandler input = new InputHandler();
+    ArrayList<Wall> walls = MapHandler.getInstance().getWalls();
+
     @Override
     protected void handleInput() {
-
+        Gdx.input.setInputProcessor(input);
     }
 
     @Override
     public void update(float dt) {
+        handleInput();
+        player.update(dt);
 
     }
 
     @Override
     public void render(SpriteBatch b) {
+
+
+        for (Wall w: walls) {
+            w.render(b);
+
+        }
+
+        player.render(b);
 
     }
 

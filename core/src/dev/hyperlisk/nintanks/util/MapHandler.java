@@ -12,9 +12,17 @@ public class MapHandler {
     private ArrayList<Wall> walls = new ArrayList<>();
 
     private String line;
+    private static MapHandler s_instance;
 
 
-    public MapHandler() {
+    public static MapHandler getInstance() {
+        if(s_instance == null){
+            s_instance = new MapHandler();
+        }
+        return s_instance;
+    }
+
+    private MapHandler() {
         mapfile = new File("map.txt");
         try {
             reader = new BufferedReader(new FileReader(mapfile));
