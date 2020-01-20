@@ -47,6 +47,8 @@ public class Nintanks extends ApplicationAdapter {
 	public void render () {
 
 		gsm.update(Gdx.graphics.getDeltaTime());
+
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		gsm.render(sb);
 
 	}

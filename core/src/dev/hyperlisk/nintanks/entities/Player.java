@@ -71,7 +71,7 @@ public class Player {
 
         collide();
 
-
+        System.out.println(getDirection().x + " " + getDirection().y);
         move();
 
 
@@ -142,12 +142,28 @@ public class Player {
             for (int i = 0; i < walls.length; i++) {
                 currentWall = walls[i];
 
+                if(currentWall.getWallRect().overlaps(collider)) {
+
+                    setDirection(new Vector2(-getDirection().x, -getDirection().y));
+                    move();
+                }
                return;
             }
         }
 
     }
 
+    public void shoot() {
+
+        Vector2 direction = new Vector2(getDirection().x, getDirection().y);
+        Sprite sprite = new Sprite(new Texture("item/bullet.png"));
+        if(Mouse.mouseLeft) {
+
+
+
+        }
+
+    }
     /**
      * Takes in a single wall and returns its distance as an int.
      * @param w
