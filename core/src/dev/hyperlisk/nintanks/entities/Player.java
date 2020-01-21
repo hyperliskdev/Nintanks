@@ -18,23 +18,22 @@ import java.util.Comparator;
 
 public class Player {
 
-    // Player values
     private Sprite playerSprite;
 
     private Vector2 playerPos = new Vector2(200, 100);
     private Vector2 direction = new Vector2(0, 0);
-    private Vector2 velocity = new Vector2(1, 1);
 
     private float playerScale = 1.0f;
     private float angle;
 
     private Rectangle collider;
 
-    // Mouse values
     private Sprite mouseSprite;
 
+    private ArrayList<Bullet> bullets = new ArrayList<>();
+
     /**
-     *
+     * Constuctor for the player.
      */
     public Player() {
 
@@ -64,17 +63,17 @@ public class Player {
 
 
         mouseSprite.setPosition(Mouse.mousePosition.x - mouseSprite.getOriginX(), Gdx.graphics.getHeight() - Mouse.mousePosition.y - mouseSprite.getOriginY());
-
         rotateSprite();
-
-        setDirection(new Vector2((float) Math.cos(Math.toRadians(angle + 180)), (float) Math.sin(Math.toRadians(angle + 180))));
-
         collide();
-
-        System.out.println(getDirection().x + " " + getDirection().y);
         move();
 
+        for (Bullet b: bullets) {
+            b.update(dt);
+        }
 
+        if(UtilKeys.SHOOT_KEY) {
+            shoot();
+        }
     }
 
     public void move() {
@@ -108,6 +107,10 @@ public class Player {
         mouseSprite.draw(sb);
         playerSprite.draw(sb);
 
+        for (Bullet b: bullets) {
+            b.render(sb);
+        }
+
         sb.end();
     }
 
@@ -121,6 +124,7 @@ public class Player {
 
         // Get the angle based on the mouse position.
         this.angle = MathUtils.radiansToDegrees * MathUtils.atan2(yInput - playerPos.y, xInput - playerPos.x);
+        setDirection(new Vector2((float) Math.cos(Math.toRadians(angle + 180)), (float) Math.sin(Math.toRadians(angle + 180))));
 
         if(angle < 0){
             angle += 360;
@@ -128,6 +132,7 @@ public class Player {
     }
 
     /**
+     * Move's the player backwards 2x the negative of its current distance away from any nearby walls it is overlaping.
      *
      */
     public void collide() {
@@ -144,7 +149,7 @@ public class Player {
 
                 if(currentWall.getWallRect().overlaps(collider)) {
 
-                    setDirection(new Vector2(-getDirection().x, -getDirection().y));
+                    setDirection(new Vector2(-getDirection().x * 2, -getDirection().y * 2));
                     move();
                 }
                return;
@@ -153,15 +158,16 @@ public class Player {
 
     }
 
+    /**
+     * Function that allows the player to shoot a bullet.
+     *
+     */
     public void shoot() {
+        Bullet bullet = new Bullet();
+        bullet.setDirection(getDirection().x, getDirection().y);
+        bullet.setPosition(playerPos.x, playerPos.y);
+        bullets.add(bullet);
 
-        Vector2 direction = new Vector2(getDirection().x, getDirection().y);
-        Sprite sprite = new Sprite(new Texture("item/bullet.png"));
-        if(Mouse.mouseLeft) {
-
-
-
-        }
 
     }
     /**
@@ -177,7 +183,8 @@ public class Player {
     }
 
     /**
-     *
+     * Returns all walls within a given distance to the player.
+     * This is done to save processing power.
      * @param radius
      * @return an array of walls that are close to the player.
      */
@@ -206,21 +213,6 @@ public class Player {
     }
 
 
-    public Vector2 getPlayerPos() {
-        return playerPos;
-    }
-
-    public void setPlayerPos(Vector2 playerPos) {
-        this.playerPos = playerPos;
-    }
-
-    public void setPlayerX(float x) {
-        this.playerPos.x = x;
-    }
-
-    public void setPlayerY(float y) {
-        this.playerPos.y = y;
-    }
 
     public Vector2 getDirection() {
         return direction;
@@ -230,35 +222,5 @@ public class Player {
         this.direction = direction;
     }
 
-    public float getPlayerScale() {
-        return playerScale;
-    }
 
-    public void setPlayerScale(float playerScale) {
-        this.playerScale = playerScale;
-    }
-
-    public float getAngle() {
-        return angle;
-    }
-
-    public void setAngle(float angle) {
-        this.angle = angle;
-    }
-
-    public Rectangle getCollider() {
-        return collider;
-    }
-
-    public void setCollider(Rectangle collider) {
-        this.collider = collider;
-    }
-
-    public Vector2 getVelocity() {
-        return velocity;
-    }
-
-    public void setVelocity(Vector2 velocity) {
-        this.velocity = velocity;
-    }
 }

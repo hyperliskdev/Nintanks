@@ -31,6 +31,10 @@ public class InputHandler implements InputProcessor {
             case Keys.DOWN: case Keys.S:
                 Directions.DOWN_DIR = true;
                 keyProcessed = true;
+                break;
+            case Keys.E:
+                keyProcessed = true;
+                UtilKeys.SHOOT_KEY = true;
         }
         return keyProcessed;
     }
@@ -55,6 +59,11 @@ public class InputHandler implements InputProcessor {
             case Keys.DOWN: case Keys.S:
                 Directions.DOWN_DIR = false;
                 keyProcessed = true;
+                break;
+            case Keys.E:
+                UtilKeys.SHOOT_KEY = false;
+                keyProcessed = true;
+                break;
         }
         return keyProcessed;
     }

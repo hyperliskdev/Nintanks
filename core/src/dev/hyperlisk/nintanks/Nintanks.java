@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import dev.hyperlisk.nintanks.entities.Player;
 import dev.hyperlisk.nintanks.entities.Wall;
 import dev.hyperlisk.nintanks.states.GameState;
+import dev.hyperlisk.nintanks.states.MenuState;
 import dev.hyperlisk.nintanks.states.State;
 import dev.hyperlisk.nintanks.states.StateManager;
 import dev.hyperlisk.nintanks.util.InputHandler;

@@ -12,20 +12,21 @@ import java.util.ArrayList;
 
 public class GameState extends State {
 
+    // Objects needed for the GameState
+    Player player = new Player();
+    InputHandler input = new InputHandler();
+    ArrayList<Wall> walls = MapHandler.getInstance().getWalls();
 
     public GameState(StateManager stateManager) {
         super(stateManager);
 
     }
 
-
-    Player player = new Player();
-    InputHandler input = new InputHandler();
-    ArrayList<Wall> walls = MapHandler.getInstance().getWalls();
-
     @Override
     protected void handleInput() {
+
         Gdx.input.setInputProcessor(input);
+
     }
 
     @Override
@@ -50,6 +51,5 @@ public class GameState extends State {
 
     @Override
     public void dispose() {
-
     }
 }

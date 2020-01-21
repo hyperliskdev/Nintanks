@@ -21,6 +21,11 @@ public class Reference {
 
     }
 
+    public static class UtilKeys {
+
+        public static boolean SHOOT_KEY;
+
+    }
     public static class Mouse {
         public static Vector2 mousePosition = Vector2.Zero;
 

@@ -1,20 +1,24 @@
 package dev.hyperlisk.nintanks.states;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import dev.hyperlisk.nintanks.util.Reference;
 
 public class MenuState extends State {
 
-    protected MenuState(StateManager stateManager) {
+    public MenuState(StateManager stateManager) {
         super(stateManager);
     }
 
     @Override
     protected void handleInput() {
 
+
     }
 
     @Override
     public void update(float dt) {
+
 
     }
 
