@@ -24,6 +24,7 @@ public class Bullet {
         position.y -= direction.y * 2;
         bulletSprite.setPosition(position.x, position.y);
 
+
     }
 
     public void render(SpriteBatch sb) {
@@ -40,5 +41,12 @@ public class Bullet {
 
     public void setRotation(float rotation) {
         this.rotation = rotation;
+    }
+
+    public float getX() {
+        return position.x;
+    }
+    public float getY() {
+        return position.y;
     }
 }

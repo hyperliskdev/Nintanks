@@ -16,6 +16,9 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+import static dev.hyperlisk.nintanks.util.Reference.VIEWPORT_HEIGHT;
+import static dev.hyperlisk.nintanks.util.Reference.VIEWPORT_WIDTH;
+
 public class Player {
 
     private Sprite playerSprite;
@@ -67,11 +70,22 @@ public class Player {
         collide();
         move();
 
+        bullets.removeIf(n -> (bullets.get(0).getX() > VIEWPORT_WIDTH));
+        bullets.removeIf(n -> (bullets.get(0).getY() > VIEWPORT_HEIGHT));
+
+
+        bullets.removeIf(n -> (bullets.get(0).getX() < 0));
+        bullets.removeIf(n -> (bullets.get(0).getY() < 0));
+
         for (Bullet b: bullets) {
             b.update(dt);
+
         }
 
         if(UtilKeys.SHOOT_KEY) {
+            if(bullets.size() > 1) {
+                return;
+            }
             shoot();
         }
     }
