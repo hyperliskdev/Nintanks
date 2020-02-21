@@ -4,11 +4,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.Map;
 import dev.hyperlisk.nintanks.entities.Player;
+import dev.hyperlisk.nintanks.entities.Tank;
 import dev.hyperlisk.nintanks.entities.Wall;
+import dev.hyperlisk.nintanks.entities.Tank.TankType;
 import dev.hyperlisk.nintanks.util.InputHandler;
 import dev.hyperlisk.nintanks.util.MapHandler;
 
 import java.util.ArrayList;
+
+import javax.swing.text.TabSet;
 
 public class GameState extends State {
 
@@ -38,8 +42,6 @@ public class GameState extends State {
 
     @Override
     public void render(SpriteBatch b) {
-
-
         for (Wall w: walls) {
             w.render(b);
 

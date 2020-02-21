@@ -2,7 +2,10 @@ package dev.hyperlisk.nintanks.entities;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import dev.hyperlisk.nintanks.entities.ai.TankAI;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import dev.hyperlisk.nintanks.util.Reference.Directions;;
+
 
 public class Tank {
 
@@ -12,14 +15,20 @@ public class Tank {
     private BulletSpeed bulletSpeed;
     private FireRate fireRate;
 
+    private Player pl;
     private Sprite sprite;
-    private Texture texture;
 
-    private double x, y;
+    private float x, y;
     private double rotation;
     private double speed;
 
-    public Tank(TankType type) {
+    public Tank(TankType type, float x, float y, Player player) {
+
+        this.x = x;
+        this.y = y;
+        this.tankType = type;
+        pl = player;
+
 
         // Setup all behavior enums for what the tank should do.
         switch (tankType) {
@@ -69,60 +78,88 @@ public class Tank {
                 behavior = Behavior.OFFENSIVE;
                 bulletSpeed = BulletSpeed.FAST;
                 fireRate = FireRate.FAST;
-
         }
 
-
+        sprite = tankType.getSprite();
+        speed = movement.getSpeed();
+       
     }
 
 
     public void update(float dt) {
 
+        if(Directions.FORWARD_DIR) {
+
+
+        x += -pl.getDirection().x;
+        y += -pl.getDirection().y;
+
     }
 
-    public void render() {
+    sprite.setPosition(x, y);
 
-        switch (tankType) {
+    sprite.rotate((float)Math.atan2(pl.getPosition().y, pl.getPosition().x));
 
-            case BROWN:
+        
 
-            case GREY:
+    }
 
-            case TEAL:
+    public void render(SpriteBatch sb) {
 
-            case YELLOW:
+        sb.begin();
 
-            case PINK:
+        sprite.draw(sb);
 
-            case PURPLE:
+        sb.end();
 
-            case GREEN:
+    }
 
-            case WHITE:
+    /**
+     * Enum defines which sprite to draw on the screen.
+     *
+     */
+    public enum TankType {
 
-            case BLACK:
+        BROWN(new Sprite(new Texture("enemy/enemy_tank_brown.png"))),
+        GREY(new Sprite(new Texture("enemy/enemy_tank_grey.png"))),
+        TEAL(new Sprite(new Texture("enemy/enemy_tank_teal.png"))),
+        YELLOW(new Sprite(new Texture("enemy/enemy_tank_yellow.png"))),
+        PINK(new Sprite(new Texture("enemy/enemy_tank_pink.png"))),
+        GREEN(new Sprite(new Texture("enemy/enemy_tank_green.png"))),
+        PURPLE(new Sprite(new Texture("enemy/enemy_tank_purple.png"))),
+        WHITE(new Sprite(new Texture("enemy/enemy_tank_white.png"))),
+        BLACK(new Sprite(new Texture("enemy/enemy_tank_black.png")));
+
+        public Sprite sprite;
+
+        public Sprite getSprite() {
+
+            return this.sprite;
+
         }
 
-    }
-
-    private enum TankType {
-        BROWN,
-        GREY,
-        TEAL,
-        YELLOW,
-        PINK,
-        GREEN,
-        PURPLE,
-        WHITE,
-        BLACK
-
+        private TankType(Sprite sprite) {
+            this.sprite = sprite;
+        }
     }
 
     private enum Movement {
-        STATIONARY,
-        NORMAL,
-        FAST,
-        SLOW
+
+        STATIONARY(0),
+        NORMAL(3),
+        FAST(5),
+        SLOW(1);
+
+        public int speed;
+
+        public int getSpeed() {
+            return this.speed;
+        }
+
+        private Movement(int speed) {
+            this.speed = speed;
+        }
+
     }
 
     private enum Behavior {
@@ -147,13 +184,13 @@ public class Tank {
     }
 
     public void move() {
-        // Based on what values are given
 
 
 
     }
 
     public void shoot() {
+
 
 
     }
@@ -186,16 +223,8 @@ public class Tank {
         return x;
     }
 
-    public void setX(double x) {
-        this.x = x;
-    }
-
     public double getY() {
         return y;
-    }
-
-    public void setY(double y) {
-        this.y = y;
     }
 
     public TankType getTankType() {
