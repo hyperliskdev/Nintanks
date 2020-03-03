@@ -88,21 +88,8 @@ public class Tank {
 
     public void update(float dt) {
 
-        if(Directions.FORWARD_DIR) {
-
-
-        x += -pl.getDirection().x;
-        y += -pl.getDirection().y;
-
     }
 
-    sprite.setPosition(x, y);
-
-    sprite.rotate((float)Math.atan2(pl.getPosition().y, pl.getPosition().x));
-
-        
-
-    }
 
     public void render(SpriteBatch sb) {
 

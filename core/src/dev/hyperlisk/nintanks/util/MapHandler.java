@@ -1,5 +1,6 @@
 package dev.hyperlisk.nintanks.util;
 
+import dev.hyperlisk.nintanks.Nintanks;
 import dev.hyperlisk.nintanks.entities.Wall;
 
 import java.io.*;
@@ -23,7 +24,7 @@ public class MapHandler {
     }
 
     private MapHandler() {
-        mapfile = new File("map.txt");
+        mapfile = new File("D:\\Projects\\Nintanks\\core\\assets\\map.txt");
         try {
             reader = new BufferedReader(new FileReader(mapfile));
         } catch (FileNotFoundException e) {

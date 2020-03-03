@@ -36,5 +36,11 @@ public class Reference {
 
     }
 
+    public static class Player {
+
+        public static float ACCELERATION = 1.0f;
+
+    }
+
 
 }
